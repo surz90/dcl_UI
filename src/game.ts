@@ -139,8 +139,8 @@ discImgScreen2.visible = false
 let imgCloseBtn = new Texture("images/UI/close.png")
 const closeBtn = new UIImage(rect, imgCloseBtn)
 closeBtn.name = 'close_btn'
-closeBtn.width = '50px'
-closeBtn.height = '50px'
+closeBtn.width = 50
+closeBtn.height = 50
 closeBtn.sourceWidth = 112
 closeBtn.sourceHeight = 112
 closeBtn.positionX = 953
@@ -155,10 +155,10 @@ closeBtn.onClick = new OnClick(() => {
 
 // fact button screen
 let imgFactBtn = new Texture("images/UI/facts.png")
-export let factBtn = new UIImage(rect, imgFactBtn)
+const factBtn = new UIImage(rect, imgFactBtn)
 factBtn.name = 'fact_btn'
-factBtn.width = '203px'
-factBtn.height = '81px'
+factBtn.width = 203
+factBtn.height = 81
 factBtn.sourceWidth = 512
 factBtn.sourceHeight = 226
 factBtn.positionX = 755
@@ -172,10 +172,10 @@ factBtn.onClick = new OnClick(() => {
 
 // compare button screen
 let imgCompareBtn = new Texture("images/UI/compare.png")
-export let compareBtn = new UIImage(rect, imgCompareBtn)
+const compareBtn = new UIImage(rect, imgCompareBtn)
 compareBtn.name = 'compare_btn'
-compareBtn.width = '167px'
-compareBtn.height = '156px'
+compareBtn.width = 167
+compareBtn.height = 156
 compareBtn.sourceWidth = 512
 compareBtn.sourceHeight = 512
 compareBtn.positionX = 780
@@ -187,10 +187,10 @@ compareBtn.onClick = new OnClick(() => {
 
 // artscape button screen
 let imgArtscapeBtn = new Texture("images/UI/artscape.png")
-let artscapeBtn = new UIImage(rect, imgArtscapeBtn)
+const artscapeBtn = new UIImage(rect, imgArtscapeBtn)
 artscapeBtn.name = 'artscape_btn'
-artscapeBtn.width = '167px'
-artscapeBtn.height = '156px'
+artscapeBtn.width = 167
+artscapeBtn.height = 156
 artscapeBtn.sourceWidth = 500
 artscapeBtn.sourceHeight = 500
 artscapeBtn.positionX = 780
@@ -202,10 +202,10 @@ artscapeBtn.onClick = new OnClick(() => {
 
 // next button screen
 let imgNextBtn = new Texture("images/UI/next.png")
-let nextBtn = new UIImage(rect, imgNextBtn)
+const nextBtn = new UIImage(rect, imgNextBtn)
 nextBtn.name = 'next_btn'
-nextBtn.width = '50px'
-nextBtn.height = '50px'
+nextBtn.width = 50
+nextBtn.height = 50
 nextBtn.sourceWidth = 112
 nextBtn.sourceHeight = 112
 nextBtn.positionX = 100
@@ -285,7 +285,6 @@ const stateInfoUI = (function () {
             }
             UI_show = ui_screen
             UI_show.visible = true
-            //text_UI.value = 'HI !!!'
             canvas.visible = true
         },
         getCurrentUI: function () {
