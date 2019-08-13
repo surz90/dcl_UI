@@ -71,7 +71,7 @@ canvas.visible = false
 
 
 /**
- * CREATE STATIC SCREEN (UIImage)
+ * CREATE STATIC SCREEN
  * */
 
 // sun information screen
@@ -132,7 +132,7 @@ discImgScreen2.visible = false
 
 
 /**
- * CREATE DYNAMIC SCREEN (UIImage)
+ * CREATE BUTTON
  * */
 
 // close button screen
@@ -223,7 +223,7 @@ nextBtn.onClick = new OnClick(() => {
 })
 
 /**
- * CREATE DYNAMIC SCREEN (UIText)
+ * CREATE UI TEXT
  * */
 
 // UI text for planet facts
@@ -239,11 +239,10 @@ factTxt.color = new Color4(0.7, 1, 0.8, 1)
 factTxt.textWrapping = true
 
 /**
- * GROUPING UIImage OBJECTS BASED ON FUNCTIONALITY
+ * GROUPING UI OBJECTS
  * */
 
-// STATIC SCREEN
-// information page group
+// STATIC SCREEN information page group
 const staticScreenGroup = {
     "sun": sunImgScreen,
     "mercury": merImgScreen,
@@ -251,7 +250,7 @@ const staticScreenGroup = {
     "disclaimer2": discImgScreen2
 }
 
-// DYNAMIC SCREEN
+// BUTTONS
 // close button -> appear in all page
 const closeMenuGroup = {
     "closeBtn": closeBtn
@@ -270,11 +269,10 @@ const planetMenuGroup = {
 
 
 /**
- * FUNCTION TO CHANGE USER SCREEN
+ * HANDLING GROUPED UI OBJECTS
  * */
 
-// control STATIC SCREEN
-// function expression to change static screen (sun, mercury and disclaimer page information)
+// singleton object to manage current state UI and display
 const stateInfoUI = (function () {
     let UI_show: UIImage
     return {
@@ -293,9 +291,7 @@ const stateInfoUI = (function () {
     }
 }())
 
-// control DYNAMIC SCREEN
-// function to change button screen (close, next, fact, compare and artscape button)
-// and also text screen (planet facts screen)
+// function to manage which button is needed to display
 function stateDynamicUI(bPlanetMenu: boolean, bDisclaimerMenu: boolean, bCloseMenu: boolean) {
     for (let key in planetMenuGroup) {
         planetMenuGroup[key].visible = bPlanetMenu
