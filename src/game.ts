@@ -1,63 +1,10 @@
 import {FactsModule} from "./planet_facts"
 
 /**
- * CREATE 3D OBJECT
- * */
-
-const menu3D = new Entity()
-
-const sunMenu = new Entity()
-sunMenu.addComponent(new BoxShape())
-sunMenu.addComponent(new Transform({
-    position: new Vector3(8, 1.5, 8),
-    scale: new Vector3(0.1, 0.25, 0.5)
-}))
-sunMenu.addComponent(
-    new OnClick(e => {
-        log("sun CLICKED")
-        stateDynamicUI(true, false, true)
-        stateInfoUI.changeCurrentUI(staticScreenGroup.sun)
-    })
-)
-
-const mercuryMenu = new Entity()
-mercuryMenu.addComponent(new BoxShape())
-mercuryMenu.addComponent(new Transform({
-    position: new Vector3(8, 1.2, 8),
-    scale: new Vector3(0.1, 0.25, 0.5)
-}))
-mercuryMenu.addComponent(
-    new OnClick(e => {
-        log("mercury CLICKED")
-        stateDynamicUI(true, false, true)
-        stateInfoUI.changeCurrentUI(staticScreenGroup.mercury)
-    })
-)
-
-const disclaimerMenu = new Entity()
-disclaimerMenu.addComponent(new BoxShape())    
-disclaimerMenu.addComponent(new Transform({
-    position: new Vector3(8, 0.9, 8),
-    scale: new Vector3(0.1, 0.25, 0.5)
-}))
-disclaimerMenu.addComponent(
-    new OnClick(e => {
-        log("disclaimer CLICKED")
-        stateDynamicUI(false, true, true)
-        stateInfoUI.changeCurrentUI(staticScreenGroup.disclaimer1)
-    })
-)
-
-sunMenu.setParent(menu3D)
-mercuryMenu.setParent(menu3D)
-disclaimerMenu.setParent(menu3D)
-engine.addEntity(menu3D)
-
-
-/**
  * CREATE CANVAS FOR UI
  * */
 
+//create canvas
 const canvas = new UICanvas()
 // create container inside canvas
 const rect = new UIContainerRect(canvas)
@@ -130,7 +77,6 @@ discImgScreen2.width = 1024
 discImgScreen2.height = 512
 discImgScreen2.visible = false
 
-
 /**
  * CREATE BUTTON
  * */
@@ -148,9 +94,10 @@ closeBtn.positionY = -5
 closeBtn.isPointerBlocker = true
 closeBtn.onClick = new OnClick(() => {
     log("Close Button Clicked")
+    canvas.visible = false
+    //add this 2 line to set all state to false
     stateDynamicUI(false, false, false)
     stateInfoUI.getCurrentUI().visible = false
-    canvas.visible = false
 })
 
 // fact button screen
@@ -208,7 +155,7 @@ nextBtn.width = 50
 nextBtn.height = 50
 nextBtn.sourceWidth = 112
 nextBtn.sourceHeight = 112
-nextBtn.positionX = 100
+nextBtn.positionX = 20
 nextBtn.positionY = -5
 nextBtn.isPointerBlocker = true
 nextBtn.onClick = new OnClick(() => {
@@ -279,7 +226,6 @@ const stateInfoUI = (function () {
         changeCurrentUI: function (ui_screen) {
             if (UI_show) {
                 UI_show.visible = false
-                log("current UI set to false")
             }
             UI_show = ui_screen
             UI_show.visible = true
@@ -303,3 +249,58 @@ function stateDynamicUI(bPlanetMenu: boolean, bDisclaimerMenu: boolean, bCloseMe
         closeMenuGroup[key].visible = bCloseMenu
     }
 }
+
+/**
+ * CREATE 3D OBJECT
+ * */
+
+const menu3D = new Entity()
+
+const sunMenu = new Entity()
+sunMenu.addComponent(new BoxShape())
+sunMenu.addComponent(new Transform({
+    position: new Vector3(8, 1.5, 8),
+    scale: new Vector3(0.1, 0.25, 0.5)
+}))
+sunMenu.addComponent(
+    new OnClick(e => {
+        log("sun CLICKED")
+        planetMenuGroup.factTxt.value = "WELCOME"
+        stateDynamicUI(true, false, true)
+        stateInfoUI.changeCurrentUI(staticScreenGroup.sun)
+    })
+)
+
+const mercuryMenu = new Entity()
+mercuryMenu.addComponent(new BoxShape())
+mercuryMenu.addComponent(new Transform({
+    position: new Vector3(8, 1.2, 8),
+    scale: new Vector3(0.1, 0.25, 0.5)
+}))
+mercuryMenu.addComponent(
+    new OnClick(e => {
+        log("mercury CLICKED")
+        planetMenuGroup.factTxt.value = "WELCOME"
+        stateDynamicUI(true, false, true)
+        stateInfoUI.changeCurrentUI(staticScreenGroup.mercury)
+    })
+)
+
+const disclaimerMenu = new Entity()
+disclaimerMenu.addComponent(new BoxShape())    
+disclaimerMenu.addComponent(new Transform({
+    position: new Vector3(8, 0.9, 8),
+    scale: new Vector3(0.1, 0.25, 0.5)
+}))
+disclaimerMenu.addComponent(
+    new OnClick(e => {
+        log("disclaimer CLICKED")
+        stateDynamicUI(false, true, true)
+        stateInfoUI.changeCurrentUI(staticScreenGroup.disclaimer1)
+    })
+)
+
+sunMenu.setParent(menu3D)
+mercuryMenu.setParent(menu3D)
+disclaimerMenu.setParent(menu3D)
+engine.addEntity(menu3D)
